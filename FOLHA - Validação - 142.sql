@@ -160,15 +160,14 @@ begin
 end;
 
 -- bethadba.hist_cargos_caract_cfg
-with ordenados as (
-  select id_hist_cargo_caract_cfg,
-         row_number() over (order by ordem, id_hist_cargo_caract_cfg) as nova_ordem
-    from bethadba.hist_cargos_caract_cfg
-)
-update bethadba.hist_cargos_caract_cfg
-   set ordem = ordenados.nova_ordem
-  from ordenados
- where bethadba.hist_cargos_caract_cfg.id_hist_cargo_caract_cfg = ordenados.id_hist_cargo_caract_cfg;
+UPDATE bethadba.cargos_caract_cfg
+   SET ordem = ordenados.nova_ordem
+  FROM (
+         SELECT i_caracteristicas,
+                ROW_NUMBER() OVER (ORDER BY ordem, i_caracteristicas) AS nova_ordem
+           FROM bethadba.cargos_caract_cfg
+       ) AS ordenados
+ WHERE bethadba.cargos_caract_cfg.i_caracteristicas = ordenados.i_caracteristicas;
 
 -- bethadba.pessoas_caract_cfg
 with ordenados as (

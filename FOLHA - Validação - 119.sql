@@ -54,3 +54,14 @@ delete from bethadba.variaveis
                                                               else
                                                                  DATEDIFF(month, variaveis.dt_inicial, variaveis.dt_final)  
                                                               end));
+
+
+
+
+
+update bethadba.variaveis as v
+  set v.dt_final = convert(varchar(10), dateadd(day, -(day(ra.dt_rescisao) - 1), ra.dt_rescisao), 23)
+    from bethadba.rescisoes as ra
+     where v.i_entidades = ra.i_entidades
+     and v.i_funcionarios = ra.i_funcionarios
+     and ra.dt_rescisao < v.dt_final;

@@ -22,5 +22,6 @@ select beneficiarios.i_funcionarios as Matriculas,
 -- CORREÇÃO
 -- Insere um responsável legal para o beneficiário menor de idade
 
-insert into bethadba.beneficiarios_repres_legal (i_entidades, i_funcionarios, i_pessoas, tipo, dt_inicial, dt_final)
-values (2, 292, 2835, 5, 2020-09-01, null);
+INSERT INTO bethadba.beneficiarios_repres_legal 
+            (i_entidades, i_funcionarios, i_pessoas, tipo, dt_inicial, dt_final)
+VALUES      (1, 99584, 10109, 5, '2018-03-25', NULL);
